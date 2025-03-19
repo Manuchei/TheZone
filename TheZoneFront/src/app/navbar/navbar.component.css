@@ -1,0 +1,49 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white; /* Fondo blanco */
+    padding: 15px 30px; /* Espaciado ajustado para menor separación */
+    border-bottom: 2px solid #ddd; /* Línea sutil debajo */
+    color: black; /* Texto negro */
+  }
+  
+  .menu {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* Espaciado ajustado entre palabras del menú */
+    font-size: 24px; /* Letras más grandes */
+    font-weight: bold; /* Negrita */
+    color: black;
+  }
+  
+  .menu li {
+    cursor: pointer;
+    color: black; /* Texto negro */
+  }
+  
+  .menu li:hover {
+    color: #32c864; /* Verde al pasar el cursor */
+  }
+  
+  .logo-img {
+    width: 200px; /* Tamaño más grande del logo */
+    height: auto; /* Mantén la proporción */
+    margin-right: 20px; /* Espacio entre el logo y el menú */
+  }
+  
+  .icons {
+    display: flex;
+    gap: 25px; /* Espaciado más amplio entre los íconos */
+  }
+  
+  .icons i {
+    font-size: 32px; /* Tamaño más grande para los íconos */
+    color: black; /* Negro por defecto */
+    cursor: pointer;
+  }
+  
+  .icons i:hover {
+    color: #32c864; /* Verde al pasar el cursor */
+  }
+  
