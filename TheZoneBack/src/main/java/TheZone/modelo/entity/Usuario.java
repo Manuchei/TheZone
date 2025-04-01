@@ -25,10 +25,12 @@ import lombok.NoArgsConstructor;
 @Table(name = "usuarios")
 public class Usuario {
     @Id
+    @Column(name="id_usuario")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
     private String username;
     private String apellidos;
+    private String email;
     private String direccion;
     private String password;
     
