@@ -5,6 +5,7 @@ import { QuienesSomosComponent } from './pages/quienes-somos/quienes-somos.compo
 import { TiendaComponent } from './pages/tienda/tienda.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { Page404Component } from './pages/page404/page404.component';
+import { ArticuloViewComponent } from './pages/articulo-view/articulo-view.component';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'inicio'},
@@ -13,5 +14,6 @@ export const routes: Routes = [
     { path: 'tienda', component: TiendaComponent},
     { path: 'contacto', component: ContactoComponent},
     { path: 'login', component: FormLoginComponent },
+    { path: 'articulo/:id', component: ArticuloViewComponent},
     { path: '**', component: Page404Component },
 ];
