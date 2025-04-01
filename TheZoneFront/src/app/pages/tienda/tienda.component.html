@@ -1,1 +1,11 @@
-<p>tienda works!</p>
+<section class="container mt-3">
+    <div class="row g-3">
+      <article class="col-12 col-md-6 col-lg-4"
+               *ngFor="let articulo of arrArticulos">
+        <app-articulo-card [miArticulo]="articulo"></app-articulo-card>
+      </article>
+    </div>
+  </section>
+
+
+
