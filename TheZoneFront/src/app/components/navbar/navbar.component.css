@@ -1,49 +1,105 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white; /* Fondo blanco */
-    padding: 15px 30px; /* Espaciado ajustado para menor separación */
-    border-bottom: 2px solid #ddd; /* Línea sutil debajo */
-    color: black; /* Texto negro */
-  }
-  
-  .menu {
-    list-style: none;
-    display: flex;
-    gap: 20px; /* Espaciado ajustado entre palabras del menú */
-    font-size: 24px; /* Letras más grandes */
-    font-weight: bold; /* Negrita */
-    color: black;
-  }
-  
-  .menu li {
-    cursor: pointer;
-    color: black; /* Texto negro */
-  }
-  
-  .menu li:hover {
-    color: #32c864; /* Verde al pasar el cursor */
-  }
-  
-  .logo-img {
-    width: 200px; /* Tamaño más grande del logo */
-    height: auto; /* Mantén la proporción */
-    margin-right: 20px; /* Espacio entre el logo y el menú */
-  }
-  
-  .icons {
-    display: flex;
-    gap: 25px; /* Espaciado más amplio entre los íconos */
-  }
-  
-  .icons i {
-    font-size: 32px; /* Tamaño más grande para los íconos */
-    color: black; /* Negro por defecto */
-    cursor: pointer;
-  }
-  
-  .icons i:hover {
-    color: #32c864; /* Verde al pasar el cursor */
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white; /* Fondo blanco */
+  padding: 15px 30px; /* Espaciado ajustado para menor separación */
+  border-bottom: 2px solid #ddd; /* Línea sutil debajo */
+  color: black; /* Texto negro */
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* Espaciado ajustado entre palabras del menú */
+  font-size: 24px; /* Letras más grandes */
+  font-weight: bold; /* Negrita */
+}
+
+.menu li {
+  cursor: pointer;
+  color: black; /* Color por defecto para las palabras del menú */
+  transition: color 0.3s ease; /* Cambio de color suave */
+}
+
+.menu li:hover {
+  color: #32c864; /* Verde al pasar el cursor */
+}
+
+.navbar-nav .nav-item .nav-link {
+  color: black; /* Texto negro por defecto */
+  transition: color 0.3s ease; /* Transición suave */
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #32c864; /* Verde al pasar el cursor */
+}
+
+.logo-img {
+  width: 200px; /* Tamaño más grande del logo */
+  height: auto; /* Mantén la proporción */
+  margin-right: 20px; /* Espacio entre el logo y el menú */
+}
+
+.icons {
+  display: flex;
+  gap: 25px; /* Espaciado más amplio entre los íconos */
+}
+
+.icons i {
+  font-size: 32px; /* Tamaño más grande para los íconos */
+  color: black; /* Negro por defecto */
+  cursor: pointer;
+  transition: color 0.3s ease; /* Transición suave */
+}
+
+.icons i:hover {
+  color: #32c864; /* Verde al pasar el cursor */
+}
+
+/* Dropdown estilo */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+  font-size: 32px;
+  color: black;
+  background: none;
+  border: none;
+  transition: color 0.3s ease; /* Transición suave */
+}
+
+.dropdown-toggle:hover {
+  color: #32c864; /* Cambia a verde al pasar el cursor */
+}
+
+.dropdown-menu {
+  display: none; /* Oculto por defecto */
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 10px 0;
+  min-width: 150px;
+  z-index: 1;
+}
+
+.dropdown-menu .dropdown-item {
+  padding: 8px 16px;
+  color: black;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #32c864; /* Fondo verde al pasar el cursor */
+  color: white; /* Texto blanco */
+}
+
+/* Mostrar el menú desplegable al pasar el ratón */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
