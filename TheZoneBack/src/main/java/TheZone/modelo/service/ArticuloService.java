@@ -8,6 +8,8 @@ import TheZone.modelo.entity.Usuario;
 public interface ArticuloService {
 
 	List<Articulo> buscarTodos();
+	
+	List<Articulo> buscarActivos();
 
 	Articulo alta(Articulo articulo);
 
