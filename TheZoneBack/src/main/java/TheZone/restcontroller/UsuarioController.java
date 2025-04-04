@@ -20,64 +20,60 @@ import TheZone.modelo.service.UsuarioService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/usuarios")
+@RequestMapping("/articulos/usuarios")
 public class UsuarioController {
 
-	@Autowired
-	private UsuarioService us;
+    @Autowired
+    private UsuarioService us;
 
-	/*@GetMapping("/")
-	public List<Usuario> todos() {
-		return us.buscarTodos();
-	}*/
-	
-	@GetMapping("/")
-	public ResponseEntity<List<Usuario>> todos() {
-		return new ResponseEntity<List<Usuario>>(us.buscarTodos(), HttpStatus.OK);
-	}
+    @GetMapping("/")
+    public ResponseEntity<List<Usuario>> todos() {
+        return new ResponseEntity<List<Usuario>>(us.buscarTodos(), HttpStatus.OK);
+    }
 
-	/*@PostMapping("/")
-	public Usuario alta(@RequestBody Usuario usuario) {
-		return us.alta(usuario);
-	}*/
-	
-	@PostMapping("/")
-	public ResponseEntity<?> alta(@RequestBody Usuario usuario) {
-		return new ResponseEntity<Usuario>(us.alta(usuario), HttpStatus.CREATED);
-	}
+    @PostMapping("/")
+    public ResponseEntity<?> alta(@RequestBody Usuario usuario) {
+        return new ResponseEntity<Usuario>(us.alta(usuario), HttpStatus.CREATED);
+    }
 
-	/*@DeleteMapping("/{idUsuario}")
-	public String eliminar(@PathVariable int idUsuario) {
-		switch (us.eliminar(idUsuario)) {
-		case "1":
-			return "Usuario borrado correctamente";
-		case "0":
-			return "Este usuario no existe";
-		default:
-			return null;
-		}
-	}*/
-	
-	@DeleteMapping("/{idUsuario}")
-	public ResponseEntity<String> eliminar(@PathVariable int idUsuario) {
-		switch (us.eliminar(idUsuario)) {
-		case "1":
-			return new ResponseEntity<String>("Usuario borrado correctamente", HttpStatus.OK);
-		case "0":
-			return new ResponseEntity<String>("Este usuario no existe", HttpStatus.NOT_FOUND);
-		default:
-			return null;		
-		}
-	}
+    @DeleteMapping("/{idUsuario}")
+    public ResponseEntity<String> eliminar(@PathVariable int idUsuario) {
+        switch (us.eliminar(idUsuario)) {
+        case "1":
+            return new ResponseEntity<String>("Usuario borrado correctamente", HttpStatus.OK);
+        case "0":
+            return new ResponseEntity<String>("Este usuario no existe", HttpStatus.NOT_FOUND);
+        default:
+            return null;
+        }
+    }
 
-	/*@PutMapping("/")
-	public Usuario modificar(@RequestBody Usuario usuario) {
-		return us.modificar(usuario);
-	}*/
-	
-	@PutMapping("/")
-	public ResponseEntity<?> modificar(@RequestBody Usuario articulo) {
-		return new ResponseEntity<Usuario>(us.modificar(articulo), HttpStatus.OK);
-	}
+    @PutMapping("/")
+    public ResponseEntity<?> modificar(@RequestBody Usuario articulo) {
+        return new ResponseEntity<Usuario>(us.modificar(articulo), HttpStatus.OK);
+    }
 
+    @PostMapping("/register")
+    public ResponseEntity<?> registrarUsuario(@RequestBody Usuario usuario) {
+        try {
+            Usuario nuevoUsuario = us.alta(usuario);
+            return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUsuario(@RequestBody Usuario credenciales) {
+        try {
+            Usuario usuario = us.loginUsuario(credenciales.getEmail(), credenciales.getPassword());
+            if (usuario != null) {
+                return new ResponseEntity<>(usuario, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Credenciales inválidas", HttpStatus.UNAUTHORIZED);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

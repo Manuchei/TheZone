@@ -19,12 +19,6 @@ public class ArticuloServiceImpl implements ArticuloService {
 		// TODO Auto-generated method stub
 		return ar.findAll();
 	}
-	
-	@Override
-	public List<Articulo> buscarActivos() {
-		// TODO Auto-generated method stub
-		return ar.findByActivo(true);
-	}
 
 	@Override
 	public Articulo alta(Articulo articulo) {
@@ -32,41 +26,20 @@ public class ArticuloServiceImpl implements ArticuloService {
 		try {
 			if (ar.existsById(articulo.getIdArticulo()))
 				return null;
-			else {
-				articulo.setActivo(true);
+			else
 				return ar.save(articulo);
-			}
 		} catch (Exception e) {
 			return null;
 		}
 
 	}
 
-	/*@Override
+	@Override
 	public String eliminar(int idArticulo) {
 		// TODO Auto-generated method stub
 		try {
 			if (ar.existsById(idArticulo)) {
 				ar.deleteById(idArticulo);
-				return "1";
-			} else
-				return "0";
-		} catch (Exception e) {
-			// TODO: handle exception
-			return null;
-		}
-
-	}*/
-	
-	@Override
-	public String eliminar(int idArticulo) {
-		// TODO Auto-generated method stub
-		Articulo articulo = ar.findById(idArticulo).orElse(null);
-		
-		try {
-			if (ar.existsById(idArticulo)) {
-				articulo.setActivo(false);
-				ar.save(articulo);
 				return "1";
 			} else
 				return "0";

@@ -1,27 +1,47 @@
 <section class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-    <div class="shadow" style="width: 360px; background-color: white; padding: 30px 25px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
-      
-      <h6 class="text-center mb-4" style="color: #8e24aa; font-weight: bold;">Registrar</h6>
-  
-      <form>
-        <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Email" 
-                   style="font-size: 14px; border-radius: 0; font-weight: bold;">
-          </div>
-        <div class="mb-3">
-          <input type="text" class="form-control" placeholder="Usuario" 
-                 style="font-size: 14px; border-radius: 0; font-weight: bold;">
-        </div>
-        <div class="mb-3">
-          <input type="password" class="form-control" placeholder="Contraseña" 
-                 style="font-size: 14px; border-radius: 0; font-weight: bold;">
-        </div>
-        <button type="submit" class="btn w-100" 
-                style="background-color: #7ac400; color: white; font-weight: bold; font-size: 14px; border-radius: 0;">
-          Registrar
-        </button>
-      </form>
-      
-    </div>
+  <div class="shadow" style="width: 360px; background-color: white; padding: 30px 25px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
+    
+    <h6 class="text-center mb-4" style="color: #8e24aa; font-weight: bold;">Registrar</h6>
+
+    <form (submit)="onRegister($event)">
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Email"
+          [value]="user.email"
+          (input)="updateField('email', $event)"
+          style="font-size: 14px; border-radius: 0; font-weight: bold;"
+          required
+        >
+      </div>
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Usuario"
+          [value]="user.username"
+          (input)="updateField('username', $event)"
+          style="font-size: 14px; border-radius: 0; font-weight: bold;"
+          required
+        >
+      </div>
+      <div class="mb-3">
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Contraseña"
+          [value]="user.password"
+          (input)="updateField('password', $event)"
+          style="font-size: 14px; border-radius: 0; font-weight: bold;"
+          required
+        >
+      </div>
+      <button type="submit" class="btn w-100" 
+              style="background-color: #7ac400; color: white; font-weight: bold; font-size: 14px; border-radius: 0;">
+        Registrar
+      </button>
+    </form>
+    
+  </div>
 </section>
-  

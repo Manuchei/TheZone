@@ -31,7 +31,6 @@ public class Articulo {
     private double precio;
     private int stock;
     private String imagen;
-    private boolean activo;
 
     @ManyToOne
     @JoinColumn(name = "idSeccion")

@@ -34,11 +34,6 @@ public class ArticuloController {
 	public ResponseEntity<List<Articulo>> todos() {
 		return new ResponseEntity<List<Articulo>>(as.buscarTodos(), HttpStatus.OK);
 	}
-	
-	@GetMapping("/activos")
-	public ResponseEntity<List<Articulo>> todosActivos() {
-		return new ResponseEntity<List<Articulo>>(as.buscarActivos(), HttpStatus.OK);
-	}
 
 	/*@PostMapping("/")
 	public Articulo alta(@RequestBody Articulo articulo) {

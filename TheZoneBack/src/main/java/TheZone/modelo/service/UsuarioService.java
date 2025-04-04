@@ -13,5 +13,7 @@ public interface UsuarioService {
 	String eliminar(int idUsuario);
 
 	Usuario modificar(Usuario usuario);
-
+	
+	Usuario registrarUsuario(Usuario usuario);
+	Usuario loginUsuario(String email, String password);
 }
