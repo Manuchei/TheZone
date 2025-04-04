@@ -30,9 +30,19 @@ public class ArticuloController {
 		return as.buscarTodos();
 	}*/
 	
+	@GetMapping("/{idArticulo}")
+	public ResponseEntity<Articulo> uno(@PathVariable int idArticulo) {
+		return new ResponseEntity<Articulo>(as.buscarUno(idArticulo), HttpStatus.OK);
+	}
+	
 	@GetMapping("/")
 	public ResponseEntity<List<Articulo>> todos() {
 		return new ResponseEntity<List<Articulo>>(as.buscarTodos(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/activos")
+	public ResponseEntity<List<Articulo>> todosActivos() {
+		return new ResponseEntity<List<Articulo>>(as.buscarActivos(), HttpStatus.OK);
 	}
 
 	/*@PostMapping("/")

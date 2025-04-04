@@ -24,7 +24,6 @@ import lombok.NoArgsConstructor;
 public class Carrito {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCarrito;
 
 	@ManyToOne

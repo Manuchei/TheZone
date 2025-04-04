@@ -7,7 +7,11 @@ import TheZone.modelo.entity.Usuario;
 
 public interface ArticuloService {
 
+	Articulo buscarUno(int idArticulo);
+	
 	List<Articulo> buscarTodos();
+	
+	List<Articulo> buscarActivos();
 
 	Articulo alta(Articulo articulo);
 
