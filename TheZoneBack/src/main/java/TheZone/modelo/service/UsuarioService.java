@@ -6,6 +6,8 @@ import TheZone.modelo.entity.Usuario;
 
 public interface UsuarioService {
 
+	Usuario buscarUno(int idUsuario);
+	
 	List<Usuario> buscarTodos();
 
 	Usuario alta(Usuario usuario);

@@ -51,7 +51,7 @@ public class ArticuloController {
 	}*/
 	
 	@PostMapping("/")
-	public ResponseEntity<?> alta(@RequestBody Articulo articulo) {
+	public ResponseEntity<Articulo> alta(@RequestBody Articulo articulo) {
 		return new ResponseEntity<Articulo>(as.alta(articulo), HttpStatus.CREATED);
 	}
 
