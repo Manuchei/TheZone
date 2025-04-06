@@ -35,8 +35,10 @@ public class Usuario {
     private String password;
     
     @Temporal(TemporalType.DATE)
-	@Column(name = "fechaNacimiento")
+	@Column(name = "Fecha_nacimiento")
     private Date fechaNacimiento;
     
     private boolean activo;
+    
+    
 }

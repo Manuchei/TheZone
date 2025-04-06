@@ -13,6 +13,12 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    
+    @Override
+    public Usuario buscarUno(int idUsuario) {
+    	return usuarioRepository.findById(idUsuario).orElse(null);
+    }
+    
     @Override
     public List<Usuario> buscarTodos() {
         return usuarioRepository.findAll();
