@@ -5,6 +5,7 @@
         <img src="/thezone-logo.png" alt="Logo TheZone" class="logo-img" />
       </a>
     </div>
+
     <ul class="navbar-nav me-auto mb-2 mb-lg-0 menu">
       <li class="nav-item">
         <a [routerLink]="['/inicio']" routerLinkActive="active" class="nav-link">Inicio</a>
@@ -19,9 +20,11 @@
         <a [routerLink]="['/contacto']" class="nav-link">Contacto</a>
       </li>
     </ul>
+
     <div class="icons d-flex align-items-center">
       <i class="fa fa-shopping-cart me-3"></i>
-      <div class="dropdown">
+
+      <div class="dropdown" *ngIf="user; else noUser">
         <button
           class="btn btn-secondary dropdown-toggle"
           type="button"
@@ -29,17 +32,36 @@
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <i class="fa fa-user"></i>
+          <i class="fa fa-user me-1"></i> {{ user.username }}
         </button>
-        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
           <li>
-            <a [routerLink]="['/register']" class="dropdown-item">Registrarse</a>
-          </li>
-          <li>
-            <a [routerLink]="['/login']" class="dropdown-item login-link">Login</a>
+            <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
           </li>
         </ul>
       </div>
+
+      <ng-template #noUser>
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="guestDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa fa-user"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="guestDropdown">
+            <li>
+              <a [routerLink]="['/register']" class="dropdown-item">Registrarse</a>
+            </li>
+            <li>
+              <a [routerLink]="['/login']" class="dropdown-item">Login</a>
+            </li>
+          </ul>
+        </div>
+      </ng-template>
     </div>
   </div>
 </nav>
