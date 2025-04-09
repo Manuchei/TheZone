@@ -12,6 +12,8 @@ public interface ArticuloService {
 	List<Articulo> buscarTodos();
 	
 	List<Articulo> buscarActivos();
+	
+	List<Articulo> buscarSeccion(int idSeccion);
 
 	Articulo alta(Articulo articulo);
 

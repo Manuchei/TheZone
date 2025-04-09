@@ -30,6 +30,11 @@ public class ArticuloServiceImpl implements ArticuloService {
 		// TODO Auto-generated method stub
 		return ar.findByActivo(true);
 	}
+	
+	@Override
+	public List<Articulo> buscarSeccion(int idSeccion){
+		return ar.findBySeccion_IdSeccion(idSeccion);
+	}
 
 	@Override
 	public Articulo alta(Articulo articulo) {
