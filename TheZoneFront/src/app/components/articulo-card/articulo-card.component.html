@@ -18,19 +18,18 @@
   </h5>
   <p class="text-muted mb-3">{{ miArticulo.descripcion }}</p>
 
-  <!-- Pie de la tarjeta (opcional: precio, botón, stock, etc.) -->
-  <div 
-    style="background-color: #96D200; border-radius: 0 0 20px 20px; padding: 10px;"
+  <!-- Pie de la tarjeta con enlace en el precio -->
+  <a 
+    [routerLink]="['/articulo', miArticulo.idArticulo]"
+    style="text-decoration: none;"
   >
-    <span class="text-white fw-semibold">
-      {{ miArticulo.precio | currency:'EUR':'symbol':'1.2-2' }}
+    <div style="background-color: #96D200; border-radius: 0 0 20px 20px; padding: 10px;">
+      <span class="text-white fw-semibold">
+        {{ miArticulo.precio | currency:'EUR':'symbol':'1.2-2' }}
+      </span>
+    </div>
+  </a>
 
-    </span>
-
-
-  </div>
+  <!-- Botonera debajo -->
   <!-- <app-botonera [parent]="'view'" [id]="miArticulo.idArticulo"></app-botonera> -->
-
 </div>
-
-

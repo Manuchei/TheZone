@@ -1,12 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject,  } from '@angular/core';
 import { IArticulo } from '../../interfaces/iarticulo';
 import { ArticulosService } from '../../services/articulos.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-articulo-view',
-  imports: [CommonModule, ],
+  imports: [CommonModule, FormsModule ],
   templateUrl: './articulo-view.component.html',
   styleUrl: './articulo-view.component.css',
 })
