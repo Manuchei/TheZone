@@ -7,5 +7,6 @@ export interface IArticulo {
     precio: number;
     stock: number;
     imagen: string;
+    activo: number;
     seccion: ISeccion; // Asociación con la sección
   }

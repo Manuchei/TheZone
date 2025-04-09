@@ -1,0 +1,7 @@
+/* Cambiar color del switch cuando está activo */
+input.form-check-input:checked {
+    background-color: #96D200;
+    border-color: #96D200;
+    box-shadow: none;
+  }
+  
