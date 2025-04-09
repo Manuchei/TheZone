@@ -27,15 +27,16 @@ import lombok.NoArgsConstructor;
 @Table(name = "opiniones_articulos")
 public class OpinionArticulo {
 	@Id
+	@Column(name="id_opinion")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idOpinion;
 
 	@ManyToOne
-	@JoinColumn(name = "idUsuario")
+	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
 
 	@ManyToOne
-	@JoinColumn(name = "idArticulo")
+	@JoinColumn(name = "id_articulo")
 	private Articulo articulo;
 
 	private String valoracion;

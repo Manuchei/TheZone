@@ -10,4 +10,5 @@ import TheZone.modelo.entity.Articulo;
 public interface ArticuloRepository extends JpaRepository<Articulo, Integer> {
 	
 	public List<Articulo> findByActivo(Boolean activo);
+	public List<Articulo> findBySeccion_IdSeccion(int idSeccion);
 }
