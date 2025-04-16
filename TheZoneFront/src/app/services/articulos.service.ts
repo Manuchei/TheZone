@@ -1,27 +1,41 @@
-import { IArticulo } from './../interfaces/iarticulo';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { IArticulo } from './../interfaces/iarticulo';
+import { inject } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticulosService {
-  httpClient = inject(HttpClient);
+  // Inyectando HttpClient de manera correcta
+  private httpClient = inject(HttpClient);
   private baseUrl: string = 'http://localhost:9002/articulos/';
 
   constructor() {}
 
+  // Obtener todos los artículos con Promesas
   async getAllWithPromises(): Promise<IArticulo[]> {
-    const response = await lastValueFrom(
-      this.httpClient.get<IArticulo[]>(this.baseUrl)
-    );
-    return response ?? [];
+    try {
+      const response = await lastValueFrom(
+        this.httpClient.get<IArticulo[]>(this.baseUrl)
+      );
+      return response ?? []; // Devolver lista vacía si no hay respuesta
+    } catch (error) {
+      console.error('Error al obtener los artículos:', error);
+      return []; // Devolver lista vacía en caso de error
+    }
   }
 
-  getById(id: number): Promise<IArticulo> {
-    return lastValueFrom(
-      this.httpClient.get<IArticulo>(`${this.baseUrl}/${id}`)
-    );
+  // Obtener artículo por ID con Promesas
+  async getById(id: number): Promise<IArticulo> {
+    try {
+      const response = await lastValueFrom(
+        this.httpClient.get<IArticulo>(`${this.baseUrl}${id}`)      );
+      return response;
+    } catch (error) {
+      console.error('Error al obtener el artículo:', error);
+      throw error; // Lanzamos el error para que el componente pueda manejarlo
+    }
   }
 }

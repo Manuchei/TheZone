@@ -1,78 +1,41 @@
-<section>
-  <div class="container mt-5 mb-5">
-    <div class="row align-items-center">
-      
-      <!-- Imagen del artículo -->
-      <div class="col-md-4 text-center mb-4 mb-md-0">
-        <img 
-          [src]="miArticulo.imagen || 'assets/img/no-image.png'" 
-          class="border rounded"
-          style="width: 300px; height: 300px; object-fit: contain; border: 4px solid #96D200; background-color: #f8f9fa;"
-          alt="{{ miArticulo.nombre }}"
-        >
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <img
+        [src]="articulo.imagen"
+        [alt]="articulo.nombre"
+        class="img-fluid rounded"
+        style="max-width: 350px; border: 5px solid #7c3aed; border-radius: 20px;"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <h2 class="fw-bold" style="color: #7c3aed;">
+        {{ articulo.nombre }}
+      </h2>
+
+      <p class="fs-4 fw-semibold text-dark">
+        {{ formatearPrecio(articulo.precio) }}
+      </p>
+
+      <p class="text-muted" style="max-width: 600px;">
+        {{ articulo.descripcion }}
+      </p>
+
+      <div class="d-flex align-items-center my-4">
+        <input
+          type="number"
+          min="1"
+          [max]="articulo.stock || 0"
+          (input)="actualizarCantidad($event)"
+          class="form-control me-3"
+          style="width: 80px;"
+          [value]="cantidad"
+        />
+        <button class="btn btn-success fw-bold" style="background-color: #96D200;">
+          Añadir al Carro
+        </button>
       </div>
-
-      <!-- Datos del artículo -->
-      <div class="col-md-8">
-        <form>
-          <div class="mb-3">
-            <label class="form-label fw-bold" style="color: #7c3aed;">Nombre del producto</label>
-            <input type="text" class="form-control border-success" [value]="miArticulo.nombre" readonly>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label fw-bold" style="color: #7c3aed;">Categoría</label>
-            <input type="text" class="form-control border-success" [value]="miArticulo.seccion?.nombre" readonly>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label class="form-label fw-bold" style="color: #7c3aed;">Precio</label>
-              <input type="text" class="form-control border-success" [value]="miArticulo.precio | currency:'EUR'" readonly>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label class="form-label fw-bold" style="color: #7c3aed;">Stock</label>
-              <input type="text" class="form-control border-success" [value]="miArticulo.stock" readonly>
-            </div>
-          </div>
-
-          <div class="mb-4">
-            <label class="form-label fw-bold" style="color: #7c3aed;">Descripción</label>
-            <textarea class="form-control border-success" rows="4" [value]="miArticulo.descripcion" readonly></textarea>
-          </div>
-
-   <!-- Campo Activo editable -->
-<div class="form-check form-switch mb-4">
-  <input 
-    class="form-check-input" 
-    type="checkbox" 
-    id="activoSwitch"
-    [(ngModel)]="miArticulo.activo"
-    name="activo"
-  >
-  <label class="form-check-label fw-bold" for="activoSwitch" style="color: #7c3aed;">
-    Activo
-  </label>
-</div>
-
-          <div class="text-center mt-3">
-            <button 
-              type="submit" 
-              class="btn"
-              style="background-color: #96D200; color: white; font-weight: bold; padding: 10px 30px; border-radius: 4px;"
-            >
-              Enviar el mensaje
-            </button>
-          </div>
-
-          <!-- <div class="text-center">
-            <a [routerLink]="['/home']" class="btn px-4 py-2" style="background-color: #96D200; color: white; font-weight: bold;">
-              Volver al listado
-            </a>
-          </div> -->
-        </form>
-      </div>
-
     </div>
   </div>
-</section>
+</div>

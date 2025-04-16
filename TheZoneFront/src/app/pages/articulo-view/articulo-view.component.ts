@@ -1,32 +1,36 @@
-import { Component, inject,  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IArticulo } from '../../interfaces/iarticulo';
 import { ArticulosService } from '../../services/articulos.service';
-import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
 
 @Component({
   selector: 'app-articulo-view',
-  imports: [CommonModule, FormsModule ],
   templateUrl: './articulo-view.component.html',
-  styleUrl: './articulo-view.component.css',
-})
-export class ArticuloViewComponent {
-  miArticulo!: IArticulo;
+  styleUrls: ['./articulo-view.component.css']
+})export class ArticuloViewComponent implements OnInit {
+  articulo!: IArticulo;
+  cantidad: number = 1;
 
-  ArticuloService = inject(ArticulosService);
-  activatedRoute = inject(ActivatedRoute);
+  constructor(
+    private route: ActivatedRoute,
+    private articulosService: ArticulosService
+  ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(async (params: any) => {
-      let id: number = params.id as number;
-
-      try {
-        this.miArticulo = await this.ArticuloService.getById(id);
-      } catch (err) {
-        console.log('Error al llamar a la API' + err);
-      }
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.articulosService.getById(id).then((data) => {
+      this.articulo = data;
     });
+  }
+
+  actualizarCantidad(event: any): void {
+    this.cantidad = event.target.value;
+  }
+
+  formatearPrecio(precio: number | undefined): string {
+    if (precio === undefined) {
+      return '€0.00'; // Valor por defecto en caso de que sea undefined
+    }
+    return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(precio);
   }
 }
