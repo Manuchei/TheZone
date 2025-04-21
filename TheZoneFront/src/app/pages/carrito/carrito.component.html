@@ -1,0 +1,29 @@
+<div class="container py-4">
+    <h2 class="mb-4">Carrito de Compras</h2>
+  
+    <div *ngIf="carrito.length === 0">
+      <p>No hay artículos en el carrito.</p>
+    </div>
+  
+    <div *ngFor="let item of carrito" class="row mb-3 align-items-center border-bottom pb-3">
+      <div class="col-md-2">
+        <img [src]="item.imagen" alt="{{ item.nombre }}" class="img-fluid rounded" style="max-width: 100px;">
+      </div>
+      <div class="col-md-4">
+        <h5>{{ item.nombre }}</h5>
+        <p>{{ formatearPrecio(item.precio) }}</p>
+      </div>
+      <div class="col-md-2">
+        <span>Cantidad: {{ item.cantidad }}</span>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-sm btn-danger" (click)="eliminarDelCarrito(item.articuloId)">Eliminar</button>
+      </div>
+    </div>
+  
+    <div *ngIf="carrito.length > 0" class="text-end">
+      <h4>Total: {{ formatearPrecio(total) }}</h4>
+      <button class="btn btn-primary">Finalizar compra</button>
+    </div>
+  </div>
+  

@@ -3,16 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { IArticulo } from './../interfaces/iarticulo';
 import { inject } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-
 @Injectable({
   providedIn: 'root',
 })
 export class ArticulosService {
-  // Inyectando HttpClient de manera correcta
-  private httpClient = inject(HttpClient);
   private baseUrl: string = 'http://localhost:9002/articulos/';
 
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}  // Inyección tradicional
 
   // Obtener todos los artículos con Promesas
   async getAllWithPromises(): Promise<IArticulo[]> {
@@ -31,7 +28,8 @@ export class ArticulosService {
   async getById(id: number): Promise<IArticulo> {
     try {
       const response = await lastValueFrom(
-        this.httpClient.get<IArticulo>(`${this.baseUrl}${id}`)      );
+        this.httpClient.get<IArticulo>(`${this.baseUrl}${id}`)
+      );
       return response;
     } catch (error) {
       console.error('Error al obtener el artículo:', error);

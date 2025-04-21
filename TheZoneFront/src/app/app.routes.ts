@@ -7,6 +7,7 @@ import { TiendaComponent } from './pages/tienda/tienda.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { Page404Component } from './pages/page404/page404.component';
 import { ArticuloViewComponent } from './pages/articulo-view/articulo-view.component';
+import { CarritoComponent } from './pages/carrito/carrito.component';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'inicio'},
@@ -17,5 +18,6 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     {path :'register', component:FormRegisterComponent},
     { path: 'articulo/:id', component: ArticuloViewComponent},
+    {path: 'carrito', component: CarritoComponent},
     { path: '**', component: Page404Component },
 ];

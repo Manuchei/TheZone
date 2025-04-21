@@ -22,8 +22,12 @@
     </ul>
 
     <div class="icons d-flex align-items-center">
-      <i class="fa fa-shopping-cart me-3"></i>
+      <!-- Enlace al carrito solo visible si el usuario está autenticado -->
+      <a *ngIf="user" [routerLink]="['/carrito']" class="nav-link">
+        <i class="fa fa-shopping-cart me-3"></i>
+      </a>
 
+      <!-- Usuario autenticado -->
       <div class="dropdown" *ngIf="user; else noUser">
         <button
           class="btn btn-secondary dropdown-toggle"
@@ -41,6 +45,7 @@
         </ul>
       </div>
 
+      <!-- Usuario no autenticado -->
       <ng-template #noUser>
         <div class="dropdown">
           <button
