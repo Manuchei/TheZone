@@ -1,11 +1,29 @@
 <section class="container mt-3">
-    <div class="row g-3">
-      <article class="col-12 col-md-6 col-lg-4"
-               *ngFor="let articulo of arrArticulos">
-        <app-articulo-card [miArticulo]="articulo"></app-articulo-card>
-      </article>
+  <div class="row">
+    <!-- Filtros por Sección -->
+    <aside class="col-12 col-md-3 mb-3">
+      <h5><strong>Secciones</strong></h5>
+      <div *ngFor="let seccion of secciones">
+        <input 
+          type="checkbox" 
+          [id]="seccion" 
+          [value]="seccion"
+          (change)="filtrarPorSeccion($event)"
+        />
+        <label [for]="seccion" style="margin-left: 5px;">{{ seccion }}</label>
+      </div>
+    </aside>
+
+    <!-- Artículos -->
+    <div class="col-12 col-md-9">
+      <div class="row g-3">
+        <article 
+          class="col-12 col-md-6 col-lg-4"
+          *ngFor="let articulo of articulosFiltrados"
+        >
+          <app-articulo-card [miArticulo]="articulo"></app-articulo-card>
+        </article>
+      </div>
     </div>
-  </section>
-
-
-
+  </div>
+</section>
