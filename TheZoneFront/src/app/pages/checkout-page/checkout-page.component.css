@@ -1,0 +1,23 @@
+.checkout-form {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .card {
+    border: 1px solid #dee2e6;
+  }
+  
+  .card-header {
+    background-color: #6f42c1; /* Morado friki */
+    color: white;
+    font-weight: bold;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    font-size: 1.2rem;
+    padding: 10px 30px;
+  }
+  

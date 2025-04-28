@@ -50,6 +50,6 @@ export class CarritoService {
   limpiarCarrito(): void {
     this.carrito = [];
     localStorage.removeItem('carrito');
-    this.carritoSubject.next(this.carrito);
+    this.carritoSubject.next(this.carrito); // Emitir carrito vacío
   }
 }

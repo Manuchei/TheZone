@@ -3,6 +3,7 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { CarritoService } from '../../services/carrito.service';
 import { CarritoItem } from '../../interfaces/carrito-item';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router'; // <-- IMPORTAR ROUTER
 
 @Component({
   selector: 'app-carrito',
@@ -19,7 +20,8 @@ export class CarritoComponent implements OnInit, OnDestroy {
 
   constructor(
     private carritoService: CarritoService,
-    private currencyPipe: CurrencyPipe
+    private currencyPipe: CurrencyPipe,
+    private router: Router   // <-- INYECTAR ROUTER
   ) {}
 
   ngOnInit(): void {
@@ -43,5 +45,10 @@ export class CarritoComponent implements OnInit, OnDestroy {
 
   eliminarDelCarrito(id: number): void {
     this.carritoService.eliminarDelCarrito(id);
+  }
+
+  irACheckout(): void {
+    this.carritoService.limpiarCarrito(); // Limpiar el carrito
+    this.router.navigate(['/checkout']); // Navegar al formulario de checkout
   }
 }

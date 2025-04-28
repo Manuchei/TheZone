@@ -1,0 +1,61 @@
+<div class="container py-4">
+    <h2 class="text-center mb-4">Selecciona tu Forma de Pago</h2>
+  
+    <div class="payment-options d-flex justify-content-center gap-3">
+      <button type="button" class="btn btn-outline-primary payment-option" (click)="mostrarFormulario('tarjeta')">
+        <i class="fas fa-credit-card"></i> Tarjeta
+      </button>
+      <button type="button" class="btn btn-outline-primary payment-option" (click)="mostrarFormulario('paypal')">
+        <i class="fab fa-cc-paypal"></i> PayPal
+      </button>
+      <button type="button" class="btn btn-outline-primary payment-option" (click)="mostrarFormulario('contraReembolso')">
+        <i class="fas fa-cash-register"></i> Contra Reembolso
+      </button>
+    </div>
+  
+    <!-- Formulario para tarjeta -->
+    <div *ngIf="formaDePago === 'tarjeta'" class="payment-form mt-4">
+      <h3 class="text-center">Datos de la Tarjeta</h3>
+      <form>
+        <div class="mb-3">
+          <label class="form-label">Número de tarjeta</label>
+          <input type="text" class="form-control" [(ngModel)]="datosTarjeta.numero" name="numero" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Fecha de expiración</label>
+          <input type="text" class="form-control" [(ngModel)]="datosTarjeta.expiracion" name="expiracion" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">CVV</label>
+          <input type="text" class="form-control" [(ngModel)]="datosTarjeta.cvv" name="cvv" required>
+        </div>
+      </form>
+    </div>
+  
+    <!-- Formulario PayPal -->
+    <div *ngIf="formaDePago === 'paypal'" class="payment-form mt-4">
+      <h3 class="text-center">Datos de PayPal</h3>
+      <form>
+        <div class="mb-3">
+          <label class="form-label">Correo de PayPal</label>
+          <input type="email" class="form-control" [(ngModel)]="datosPaypal.correo" name="correo" required>
+        </div>
+      </form>
+    </div>
+  
+    <!-- Formulario Contra Reembolso -->
+    <div *ngIf="formaDePago === 'contraReembolso'" class="payment-form mt-4">
+      <h3 class="text-center">Datos de Contra Reembolso</h3>
+      <form>
+        <div class="mb-3">
+          <label class="form-label">Dirección de Envío</label>
+          <input type="text" class="form-control" [(ngModel)]="datosContraReembolso.direccion" name="direccion" required>
+        </div>
+      </form>
+    </div>
+  
+    <div class="text-center mt-4">
+      <button class="btn btn-success" (click)="enviarPago()">Confirmar Pago</button>
+    </div>
+  </div>
+  

@@ -1,0 +1,72 @@
+/* Estilos generales para la sección de pago */
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding-top: 20px;
+  }
+  
+  /* Estilos para las opciones de pago */
+  .payment-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .payment-option {
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    transition: background-color 0.3s ease, border 0.3s ease;
+  }
+  
+  .payment-option:hover {
+    background-color: #32c864;
+    color: white;
+    border-color: #32c864;
+  }
+  
+  .payment-option i {
+    margin-right: 10px;
+  }
+  
+  /* Estilos para los formularios de pago */
+  .payment-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .payment-form .form-label {
+    font-weight: bold;
+  }
+  
+  .payment-form input {
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    padding: 12px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .payment-form input:focus {
+    border-color: #32c864;
+  }
+  
+  /* Botón para confirmar el pago */
+  .btn-success {
+    background-color: #32c864;
+    border-color: #32c864;
+    color: white;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .btn-success:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
