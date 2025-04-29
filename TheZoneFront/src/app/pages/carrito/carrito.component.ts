@@ -3,7 +3,8 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { CarritoService } from '../../services/carrito.service';
 import { CarritoItem } from '../../interfaces/carrito-item';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router'; // <-- IMPORTAR ROUTER
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service'; // Añadir importación del AuthService
 
 @Component({
   selector: 'app-carrito',
@@ -21,10 +22,17 @@ export class CarritoComponent implements OnInit, OnDestroy {
   constructor(
     private carritoService: CarritoService,
     private currencyPipe: CurrencyPipe,
-    private router: Router   // <-- INYECTAR ROUTER
+    private router: Router,
+    private authService: AuthService // Inyectar el AuthService aquí
   ) {}
 
   ngOnInit(): void {
+    // Verificar si el usuario está logueado
+    if (!this.authService.getUser()) {
+      this.router.navigate(['/login']); // Redirigir al login si no hay usuario logueado
+      return;
+    }
+
     this.carritoSub = this.carritoService.obtenerCarritoObservable().subscribe(carrito => {
       this.carrito = carrito;
       this.calcularTotal();
@@ -48,6 +56,12 @@ export class CarritoComponent implements OnInit, OnDestroy {
   }
 
   irACheckout(): void {
+    // Verificar si el usuario está logueado antes de proceder con el checkout
+    if (!this.authService.getUser()) {
+      this.router.navigate(['/login']); // Redirigir al login si no hay usuario logueado
+      return;
+    }
+
     this.carritoService.limpiarCarrito(); // Limpiar el carrito
     this.router.navigate(['/checkout']); // Navegar al formulario de checkout
   }

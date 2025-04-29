@@ -1,6 +1,9 @@
+// src/app/services/carrito.service.ts
+
 import { Injectable } from '@angular/core';
 import { CarritoItem } from '../interfaces/carrito-item';
 import { BehaviorSubject } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,20 +11,27 @@ import { BehaviorSubject } from 'rxjs';
 export class CarritoService {
   private carrito: CarritoItem[] = [];
   private carritoSubject = new BehaviorSubject<CarritoItem[]>([]);
+  private storageKey: string = 'carrito_guest';
 
-  constructor() {
-    this.cargarCarrito();
+  constructor(private authService: AuthService) {
+    // Cada vez que cambie el usuario, actualizamos la clave y recargamos el carrito
+    this.authService.getUserObservable().subscribe(user => {
+      this.storageKey = user
+        ? `carrito_${user.username}`
+        : 'carrito_guest';
+      this.cargarCarrito();
+    });
   }
 
   private cargarCarrito(): void {
-    const data = localStorage.getItem('carrito');
+    const data = localStorage.getItem(this.storageKey);
     this.carrito = data ? JSON.parse(data) : [];
     this.carritoSubject.next(this.carrito);
   }
 
   private guardarCarrito(): void {
-    localStorage.setItem('carrito', JSON.stringify(this.carrito));
-    this.carritoSubject.next(this.carrito); // 🔁 Emitir cambios
+    localStorage.setItem(this.storageKey, JSON.stringify(this.carrito));
+    this.carritoSubject.next(this.carrito);
   }
 
   obtenerCarrito(): CarritoItem[] {
@@ -49,7 +59,7 @@ export class CarritoService {
 
   limpiarCarrito(): void {
     this.carrito = [];
-    localStorage.removeItem('carrito');
-    this.carritoSubject.next(this.carrito); // Emitir carrito vacío
+    localStorage.removeItem(this.storageKey);
+    this.carritoSubject.next(this.carrito);
   }
 }
