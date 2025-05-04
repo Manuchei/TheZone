@@ -1,32 +1,48 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';  // Importar FormsModule
-import { CommonModule } from '@angular/common';  // Importar CommonModule para usar directivas como *ngIf
-import { Router } from '@angular/router';  // Importar Router
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pago-page',
   standalone: true,
-  imports: [FormsModule, CommonModule],  // Asegúrate de incluir CommonModule y FormsModule
+  imports: [FormsModule, CommonModule],
   templateUrl: './pago-page.component.html',
   styleUrls: ['./pago-page.component.css']
 })
 export class PagoPageComponent {
   formaDePago = '';
+  tipoEnvio = '';  // Agregado para controlar el tipo de envío
+
   datosTarjeta: any = { numero: '', expiracion: '', cvv: '' };
   datosPaypal: any = { correo: '' };
   datosContraReembolso: any = { direccion: '' };
 
-  constructor(private router: Router) {}  // Inyecta el Router
+  constructor(private router: Router) {}
 
   mostrarFormulario(tipoPago: string) {
     this.formaDePago = tipoPago;
   }
 
-  enviarPago() {
-    console.log('Pago realizado con:', this.formaDePago);
-    alert('Pago realizado');
+  seleccionarEnvio(tipo: string) {
+    this.tipoEnvio = tipo;
+  }
 
-    // Redirige a la página de agradecimiento después de realizar el pago
-    this.router.navigate(['/gracias']);  // Asegúrate de que la ruta esté configurada en tu enrutador
+  enviarPago() {
+    if (!this.tipoEnvio) {
+      alert('Por favor, selecciona un tipo de envío.');
+      return;
+    }
+
+    if (!this.formaDePago) {
+      alert('Por favor, selecciona un método de pago.');
+      return;
+    }
+
+    console.log('Pago realizado con:', this.formaDePago);
+    console.log('Tipo de envío seleccionado:', this.tipoEnvio);
+    alert('Pago realizado correctamente');
+
+    this.router.navigate(['/gracias']);
   }
 }
