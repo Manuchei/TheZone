@@ -3,6 +3,7 @@ import { IArticulo } from '../../interfaces/iarticulo';
 import { ArticulosService } from '../../services/articulos.service';
 import { ArticuloCardComponent } from '../../components/articulo-card/articulo-card.component';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tienda',
@@ -15,21 +16,28 @@ export class TiendaComponent {
   arrArticulos: IArticulo[] = [];
   articulosFiltrados: IArticulo[] = [];
   seccionesSeleccionadas: string[] = [];
-  secciones: string[] = []; // Aquí se cargarán los nombres únicos
+  secciones: string[] = [];
   articuloService = inject(ArticulosService);
+  route = inject(ActivatedRoute);
 
   async ngOnInit(): Promise<void> {
     try {
       this.arrArticulos = await this.articuloService.getAllWithPromises();
-      this.articulosFiltrados = [...this.arrArticulos];
+      this.secciones = [...new Set(this.arrArticulos.map(a => a.seccion.nombre))];
 
-      // Extraer secciones únicas
-      const nombresSeccion = this.arrArticulos.map(a => a.seccion.nombre);
-      this.secciones = [...new Set(nombresSeccion)];
+      this.route.queryParams.subscribe(params => {
+        const seccion = params['seccion'];
+
+        if (seccion && this.secciones.includes(seccion)) {
+          this.seccionesSeleccionadas = [seccion];
+        }
+
+        this.filtrarArticulos();
+      });
+
     } catch (err) {
       console.error('Error al inicializar la API:', err);
     }
-
   }
 
   filtrarPorSeccion(event: Event): void {
@@ -42,6 +50,10 @@ export class TiendaComponent {
       this.seccionesSeleccionadas = this.seccionesSeleccionadas.filter(s => s !== nombreSeccion);
     }
 
+    this.filtrarArticulos();
+  }
+
+  private filtrarArticulos(): void {
     if (this.seccionesSeleccionadas.length === 0) {
       this.articulosFiltrados = [...this.arrArticulos];
     } else {

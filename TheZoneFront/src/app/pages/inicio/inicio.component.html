@@ -23,67 +23,90 @@
   </div>
 </section>
 
-<!-- CATEGORÍAS -->
+
 <section class="py-5 bg-light text-center">
   <div class="container">
     <h2 class="fw-bold mb-4" style="color: #7c3aed;">Categorías</h2>
     <div class="row g-4 justify-content-center">
 
-      <!-- Categoría 1 -->
       <div class="col-md-4 col-lg-2">
-        <div class="card h-100 border-0 shadow-sm">
-          <img src="categoria 5.png" class="card-img-top" alt="Merchandising">
-          <div class="card-body">
-            <h6 class="fw-bold">Merchandising de series y películas</h6>
-            <a href="#" class="btn btn-sm mt-2" style="background-color: #96D200; color: white;">Ir a merchandising</a>
+        <a 
+          [routerLink]="['/tienda']" 
+          [queryParams]="{ seccion: 'Marvel' }"
+          class="text-decoration-none" 
+          style="color: inherit;">
+          <div class="card h-100 border-0 shadow-sm">
+            <img src="categoria 2.png" class="card-img-top" alt="Figuras">
+            <div class="card-body text-center">
+              <h6 class="fw-bold">Marvel</h6>
+              <div class="btn btn-sm mt-2" style="background-color: #96D200; color: white;">
+                Ir Marvel
+              </div>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
 
-      <!-- Categoría 2 -->
       <div class="col-md-4 col-lg-2">
-        <div class="card h-100 border-0 shadow-sm">
-          <img src="categoria 4.png" class="card-img-top" alt="Videojuegos">
-          <div class="card-body">
-            <h6 class="fw-bold">Videojuegos y accesorios</h6>
-            <a href="#" class="btn btn-sm mt-2" style="background-color: #96D200; color: white;">Ir a videojuegos</a>
+        <a 
+          [routerLink]="['/tienda']" 
+          [queryParams]="{ seccion: 'DC' }"
+          class="text-decoration-none" 
+          style="color: inherit;">
+          <div class="card h-100 border-0 shadow-sm">
+            <img src="categoria 5.png" class="card-img-top" alt="Merchandising">
+            <div class="card-body text-center">
+              <h6 class="fw-bold">DC</h6>
+              <div class="btn btn-sm mt-2" style="background-color: #96D200; color: white;">
+                Ir a DC
+              </div>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
 
-      <!-- Categoría 3 -->
       <div class="col-md-4 col-lg-2">
-        <div class="card h-100 border-0 shadow-sm">
-          <img src="categoria 3.png" class="card-img-top" alt="Juegos de rol">
-          <div class="card-body">
-            <h6 class="fw-bold">Juegos de rol y de mesa</h6>
-            <a href="#" class="btn btn-sm mt-2" style="background-color: #96D200; color: white;">Ir a juegos de rol</a>
+        <a 
+          [routerLink]="['/tienda']" 
+          [queryParams]="{ seccion: 'D&D' }"
+          class="text-decoration-none" 
+          style="color: inherit;">
+          <div class="card h-100 border-0 shadow-sm">
+            <img src="categoria 4.png" class="card-img-top" alt="Videojuegos">
+            <div class="card-body text-center">
+              <h6 class="fw-bold">D&D</h6>
+              <div class="btn btn-sm mt-2" style="background-color: #96D200; color: white;">
+                Ir D&D
+              </div>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
 
-      <!-- Categoría 4 -->
       <div class="col-md-4 col-lg-2">
-        <div class="card h-100 border-0 shadow-sm">
-          <img src="categoria 2.png" class="card-img-top" alt="Figuras">
-          <div class="card-body">
-            <h6 class="fw-bold">Figuras coleccionables</h6>
-            <a href="#" class="btn btn-sm mt-2" style="background-color: #96D200; color: white;">Ir a figuras</a>
+        <a 
+          [routerLink]="['/tienda']" 
+          [queryParams]="{ seccion: 'Indie' }"
+          class="text-decoration-none" 
+          style="color: inherit;">
+          <div class="card h-100 border-0 shadow-sm">
+            <img src="categoria 3.png" class="card-img-top" alt="Juegos de rol">
+            <div class="card-body text-center">
+              <h6 class="fw-bold">Indie</h6>
+              <div class="btn btn-sm mt-2" style="background-color: #96D200; color: white;">
+                Ir Indie
+              </div>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
 
-      <!-- Categoría 5 -->
-      <div class="col-md-4 col-lg-2">
-        <div class="card h-100 border-0 shadow-sm">
-          <img src="categoria 1.png" class="card-img-top" alt="Retro">
-          <div class="card-body">
-            <h6 class="fw-bold">Rincón retro</h6>
-            <a href="#" class="btn btn-sm mt-2" style="background-color: #96D200; color: white;">Ir a rincón retro</a>
-          </div>
-        </div>
-      </div>
+      
+
+      
 
     </div>
   </div>
 </section>
+
+
