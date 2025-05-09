@@ -29,8 +29,8 @@ export class LoginComponent {
     event.preventDefault();
 
     this.http
-      .post<any>('http://localhost:9002/articulos/usuarios/login', this.credentials)
-      .subscribe(
+    .post<any>('/api/articulos/usuarios/login', this.credentials)
+    .subscribe(
         (response) => {
           console.log('Login exitoso:', response);
           this.authService.setUser({ username: response.username }); // GUARDA el usuario

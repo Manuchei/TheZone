@@ -27,8 +27,8 @@ export class FormRegisterComponent {
   onRegister(event: Event) {
     event.preventDefault();
     this.http
-      .post<any>('http://localhost:9002/articulos/usuarios/register', this.user)
-      .subscribe(
+    .post<any>('/api/articulos/usuarios/register', this.user)
+    .subscribe(
         (response) => {
           console.log('Registro exitoso:', response);
           this.authService.setUser({ username: this.user.username }); // Guarda el user

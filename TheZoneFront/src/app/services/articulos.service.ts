@@ -7,7 +7,7 @@ import { lastValueFrom } from 'rxjs';
   providedIn: 'root',
 })
 export class ArticulosService {
-  private baseUrl: string = 'http://localhost:9002/articulos/';
+  private baseUrl: string = '/api/articulos/';
 
   constructor(private httpClient: HttpClient) {}  // Inyección tradicional
 
